@@ -28,42 +28,26 @@ In addition the platform will provide a flexible and modular way to create and a
 # Components
 ## Diagram
 ```puml
-component UserAPI
-component DatabaseManager
-component Logger
-component PluginManager
-
-Logger --* UserAPI
-DatabaseManager --* UserAPI
-PluginManager --* UserAPI
+[Logger]
+[Plugin Manager] -right- (GUI plugin)
+[Plugin Manager] -left- (IDA plugin)
+[Plugin Manager] -down- (Ghidra plugin)
+[Plugin Manager] -up- (Confluence plugin)
 ```
-## User API
-Provides an API for the user, will interact with all of the other components
-
-## Database Manager
-Abstraction of database management
-
 ## Logger
 Used to log the program flow
 
 ## Plugin Manager
-Will provide a platform for the user to add his own plugins
-- Export plugins
-    - Add new ways to export the data and create files from the database
-- Database plugins
-    - Add new formats and ways to search the database
-- API plugins
-    - Add new plugin calls and options
-
- The list above is more of a logical separation that will not necessarily be implemented this way in the final version. 
+Will provide a platform for the user to add his own plugins, the plugin manager will bootstrap and initiate plugins, and provide an API to interact with the plugins.
 
 # Interfaces
 ## Plugin Manager
-The plugin manager will read and initialize all of the plugins on its own initialization
-
-### Interface
-- get_list
-    - Return a list of all plugins
+- get_plugin_list
+    - Return a list containing all the initialized plugin object 
+- stop
+    - Gracefully stop all plugins
+- start
+    - Start all plugins
 
 ### Usecase
 - Initialize
@@ -73,8 +57,11 @@ The plugin manager will read and initialize all of the plugins on its own initia
     - Return list of initialized plugins when asked to
 
 ## Plugin 
-A plugin will contain one or more "sub-plugins" for each of the components i.e in one plugin there will be a sub-plugin for the User API that will add an API call and an Database Manager sub-plugin that will add a new format of adding data to the database, the plugin will also have a unique name
-- get_dict
-    - Will return a dict of all the sub plugins where the key is the class of the sub plugin and the value is the object itself
-
-## Sub Plugins
+A plugin will have a standard interface and a customizable interface, in addition the plugin on initialization will get a list of all the other plugins and a "handler" to its own table in the database
+### Init required arguments
+- database_handler
+- plugin_list
+### Standard(Required)
+- start
+- stop
+- get_name
