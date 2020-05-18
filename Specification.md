@@ -72,3 +72,6 @@ A plugin will have a standard interface and a customizable interface, in additio
 - start
 - stop
 - get_name
+# Requirements
+- python
+- db access(Yet to be decided, probably mongoDB)
