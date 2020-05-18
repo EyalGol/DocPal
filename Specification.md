@@ -16,14 +16,21 @@ Efficient documentation of program research and reversing.
 - Every program has different shortcuts and ways to document
 
 ## Solution
+The solution is to essentially build a platform that will connect all of the above in a sensible way that is to store the information in a separate database, this way you can interact with it freely, miss and match, connect different parts, etc.
+
+Just to give a taste of the possibilities, imagine pressing a shortcut that will popup a window that will automatically fetch all the information you already added in you current function in IDA but will give you a couple of additional fields that you'll be able to fill in like tags, connection, flow etc. Or pressing a key to popup a window with a "Assumption" field and a "Result" field that you will just "write tab write enter" and forget about. and all of the above will be stored nicely in a database for later export whenever and however you'd like.
 ### Initial
-API that that provides an interface to manage documentation that will be internally stores in a database, and will have the option to write plugins to add new documentation forms i.e flows, function, etc... and to add new export forms i.e export into IDA, export markdown, export PDF, etc...
+Platform to store documentation fluidly in a database, the program will provide a platform to add plugins, the plugins will do things as interact with IDA to fetch information from in or give the user a GUI to interact with etc...
 
 ### Optional
-Front end interface that will give an easy way to add documentation i.e quick editable shortcuts to add documentation, script integration (for example if you add a function it will check if IDA runs and if it does it will take the function address and automatically and the documentation into IDA) etc...
-
-### Note
-In addition the platform will provide a flexible and modular way to create and add plugins and other features in whatever fashion you like, the "problems and solutions" are only my reasons and thoughts about the case but the platform will be generic.
+Crete a couple of plugins to jumpstart the project i.e
+- Plugin that will fetch and store information from IDA and will give a nice interface to interact with the information afterwards
+    - Same but for Ghidra
+- Plugin to import the information into IDA/Ghidra
+- Plugin to add tags to function in IDA/Ghidra (Used for mindmaps)
+- Plugin to export the chosen parts of the documentation in a pdf form
+- Plugin to export the chosen parts of the documentation to confluence
+- Plugin to give the user a GUI, and a shortcut platform for the platform
 
 # Components
 ## Diagram
