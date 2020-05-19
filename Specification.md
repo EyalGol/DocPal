@@ -75,3 +75,8 @@ A plugin will have a standard interface and a customizable interface, in additio
 # Requirements
 - python
 - db access(Yet to be decided, probably mongoDB)
+# Configuration
+Written in json format
+## Parameters
+- plugin_folder_path
+- database configuration (to be decided)
