@@ -1,0 +1,18 @@
+@startuml Desgin
+class PluginManager {
+    -list plugin_list
+    -string plugin_path
+    -database_handler
+
+    +void PluginManager()
+    -void parse_config()
+    -void load_plugin()
+    +list get_plugins()
+    +list stop()
+    +list start()
+}
+note "stop and start return a list of all plugins that failed to start" as N1 
+N1 - PluginManager
+
+note "For logging the Logging module in python is used" as N2
+@enduml
