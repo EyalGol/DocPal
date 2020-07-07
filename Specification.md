@@ -63,6 +63,8 @@ Plugins **wont be abstract**, as each plugin will have it's own purpose and the 
 - Plugins will have the option to add other plugins to their "known plugins list" for communication
 - All other parts of the plugins but the RPC will be private
 - The plugins will get a handle to their part in the database on initialization and will access only the given part
+- All plugins must have a name
+- All plugins will receive a plugin dictionary during initialization
 
 ## Manager
 ### Purpose
@@ -72,6 +74,12 @@ The manager will use the configuration to find, initialize and setup communicati
 ### Purpose
 Abstraction over the database.
 Will initialize the database and have an interface to smartly handout a handle to each plugin.
+### Note
+Optionally this will be a plugin
+
+## Event handler
+### Purpose
+The event handler is the "loop" of the program, all other parts are static, but the event handler is listening in the back
 
 # Requirements
 - python
