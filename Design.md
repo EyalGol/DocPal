@@ -12,4 +12,16 @@ note "Every plugin class inherites from this interface\nto simplifie the design 
 
 IPlugin . plugin_interface_note
 
+interface DatabaseHandle
+
+note "This is a wrapper that will act as a dict\nIt will querry from the given part of the database" as database_handle_note
+
+DatabaseHandle .. database_handle_note
+
+interface DatabasePlugin {
+    + get_handle(string plugin_name): DatabaseHandle
+}
+
+DatabasePlugin o-- DatabaseHandle
+
 ```
